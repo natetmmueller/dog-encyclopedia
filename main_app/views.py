@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from .models import Dog
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from .forms import WalksForm
 
 # Create your views here.
 
@@ -22,7 +23,8 @@ def dog_breeds(request):
 
 def dogs_detail(request, dog_id):
     dog = Dog.objects.get(id=dog_id)
-    return render(request, 'dog/detail.html', {'dog': dog})
+    walks_form = WalksForm()
+    return render(request, 'dog/detail.html', {'dog': dog, 'walks_form': walks_form})
 
 class DogUpdate(UpdateView):
     model = Dog

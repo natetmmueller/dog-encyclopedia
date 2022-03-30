@@ -28,4 +28,37 @@
      
 </div>
 
+<div>
+
+    <form action="" method="post">
+
+        {% csrf_token %}
+        {{ walks_form.as_p }}
+        <input type="submit" class="btn" value="Add Walk Time">
+
+
+
+    </form>
+
+    <table class="striped">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Walk time:</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for walks in dog.walks_set.all %}
+                <tr>
+                    <td>{{walks.date}}</td>
+                    <td>{{walks.get_time_display}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+</div>
+
+
 {% endblock %}
