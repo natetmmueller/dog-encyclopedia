@@ -30,7 +30,7 @@
 
 <div>
 
-    <form action="" method="post">
+    <form action="{% url 'add_walks' dog.id %}" method="post">
 
         {% csrf_token %}
         {{ walks_form.as_p }}
@@ -60,5 +60,18 @@
     </table>
 </div>
 
+<script>
+    let dateEl = document.getElementById('id_date');
+    M.Datepicker.init(dateEl, {
+        format: 'yyyy-mm-dd',
+        defaultDate: new Date(),
+        setDefaultDate: true,
+        autoClose: true
+    });
+    
+    let selectEl = document.getElementById('id_time');
+    M.FormSelect.init(selectEl);
+    
+    </script>
 
 {% endblock %}
