@@ -24,6 +24,7 @@ class Dog(models.Model):
     description = models.TextField(max_length=250)
     activity = models.IntegerField()
     image = models.CharField(default=None, blank=True, null=True, max_length=255)
+    toys = models.ManyToManyField(Toy)
 
     def get_absolute_url(self):
         return reverse('detail', kwargs = {'dog_id': self.id})
