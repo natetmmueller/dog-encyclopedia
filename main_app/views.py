@@ -1,8 +1,13 @@
+
+from dataclasses import fields
+from pydoc import classname
+from urllib import request
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
-from .models import Dog
+from .models import Dog, Toy
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .forms import WalksForm
+from django.views.generic import ListView, DetailView
 
 # Create your views here.
 
@@ -43,3 +48,21 @@ class DogDelete(DeleteView):
     success_url = '/dogs/'
 
 
+class ToyList(ListView):
+    model = Toy
+    
+
+class ToyDetail(DetailView):
+    model = Toy
+
+class ToyCreate(CreateView):
+    model = Toy
+    fields = '__all__'
+
+class ToyUpdate(UpdateView):
+    model = Toy
+    fields = ['name', 'color']
+
+class ToyDelete(DeleteView):
+    model = Toy
+    success_url = '/toys/'
