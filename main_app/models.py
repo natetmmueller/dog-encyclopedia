@@ -1,6 +1,7 @@
 from distutils.command.upload import upload
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 # Create your models here.
 TIME = (
@@ -25,6 +26,7 @@ class Dog(models.Model):
     activity = models.IntegerField()
     image = models.CharField(default=None, blank=True, null=True, max_length=255)
     toys = models.ManyToManyField(Toy)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def get_absolute_url(self):
         return reverse('detail', kwargs = {'dog_id': self.id})
