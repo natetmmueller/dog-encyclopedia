@@ -28,8 +28,9 @@ def dog_breeds(request):
 
 def dogs_detail(request, dog_id):
     dog = Dog.objects.get(id=dog_id)
+    toys_dog_doesnt_have = Toy.objects.exclude(id__in = dog.toys.all().values_list('id'))
     walks_form = WalksForm()
-    return render(request, 'dog/detail.html', {'dog': dog, 'walks_form': walks_form})
+    return render(request, 'dog/detail.html', {'dog': dog, 'walks_form': walks_form, 'toys': toys_dog_doesnt_have})
 
 def add_walks(request, dog_id):
     form = WalksForm(request.POST)
